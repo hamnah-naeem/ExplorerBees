@@ -46,11 +46,7 @@ const Hero = () => {
               <p className="text-white text-base pt-4 lg:text-lg lg:w-[600px]">
                 Discover amazing places at exclusive deals
               </p>
-              {/* <a href="#explore-cities">
-                <button className="bg-[#0b3317] px-4 py-2 text-white rounded-md font-semibold">
-                  Start Exploring
-                </button>
-              </a> */}
+          
             </div>
           </div>
         </div>

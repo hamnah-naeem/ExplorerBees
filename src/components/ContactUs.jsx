@@ -5,7 +5,7 @@ const Contact = () => {
   return (
     <div className="flex flex-col max-w-7xl mx-auto md:flex-row lg:h-screen items-center">
       {/* Left Image Section */}
-      <div className="flex-1 bg-gray-100 flex justify-center items-center">
+      <div className="hidden md:flex flex-1 bg-gray-100 justify-center items-center">
         <img
           src={contactus}
           alt="Contact Us"
