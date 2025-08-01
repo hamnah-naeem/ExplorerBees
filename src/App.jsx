@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
-import Header from './components/header';
-import Footer from './components/footer';
+import Header from './components/Header';
+import Footer from './components/Footer';
 import Home from './pages/Home';
 import Social from './pages/Social';
 import Nearby from './pages/Nearby';
