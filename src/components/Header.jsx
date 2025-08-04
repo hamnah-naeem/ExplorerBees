@@ -13,7 +13,6 @@ import { FaRegUser } from "react-icons/fa6";
 import { HiMenu, HiX } from "react-icons/hi";
 import { useLocation } from "react-router-dom";
 
-
 export default function Header() {
   const [showDropdown, setShowDropdown] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -57,14 +56,15 @@ export default function Header() {
         {/* Desktop Navigation */}
         <nav className="hidden lg:flex space-x-6 items-center text-base font-medium text-gray-700">
           {navItems.map((item, index) => (
-           <Link
-  to={item.to}
-  key={index}
-  className={`flex items-center space-x-2 cursor-pointer transition-all duration-200 ${
-    location.pathname === item.to ? "text-yellow-600 font-semibold" : "hover:text-yellow-600"
-  }`}
->
-
+            <Link
+              to={item.to}
+              key={index}
+              className={`flex items-center space-x-2 cursor-pointer transition-all duration-200 ${
+                location.pathname === item.to
+                  ? "text-yellow-600 font-semibold"
+                  : "hover:text-yellow-600"
+              }`}
+            >
               <div className="text-2xl">{item.icon}</div>
               <span>{item.label}</span>
             </Link>
