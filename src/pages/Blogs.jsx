@@ -181,10 +181,8 @@ const Blogs = () => {
           Your browser does not support the video tag.
         </video>
 
-        {/* Clean Dark Overlay */}
         <div className="absolute inset-0 bg-black opacity-60 z-10"></div>
 
-        {/* Text Content */}
         <div className="relative z-20 text-right max-w-3xl  text-white">
           <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
             Discover <span className="text-yellow-500">Travel Stories</span>
@@ -199,7 +197,7 @@ const Blogs = () => {
       {/* Search & Tags */}
       <section className="max-w-7xl mx-auto px-6 mt-16 mb-12">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          {/* Search */}
+          
           <div className="relative w-full md:w-1/2">
             <input
               type="text"
@@ -224,7 +222,6 @@ const Blogs = () => {
             </svg>
           </div>
 
-          {/* Tags */}
           <div className="flex flex-wrap gap-3 justify-center md:justify-end">
             {[
               "Adventure",

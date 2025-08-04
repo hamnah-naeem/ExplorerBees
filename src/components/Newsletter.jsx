@@ -9,7 +9,6 @@ const Newsletter = () => {
     e.preventDefault();
     setIsLoading(true);
     
-    // Simulate API call
     setTimeout(() => {
       setSubscribed(true);
       setIsLoading(false);
