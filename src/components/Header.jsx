@@ -4,7 +4,8 @@ import { AiOutlineHome } from "react-icons/ai";
 import { GoLocation } from "react-icons/go";
 import { RiMicAiLine } from "react-icons/ri";
 import { FiVideo } from "react-icons/fi";
-import { PiBooksLight, PiFacebookLogoBold } from "react-icons/pi";
+import { PiBooksLight } from "react-icons/pi";
+import { FaXTwitter } from "react-icons/fa6";
 import { TbMessageCircleQuestion } from "react-icons/tb";
 import { VscSearch } from "react-icons/vsc";
 import { HiOutlineBell } from "react-icons/hi";
@@ -20,7 +21,7 @@ export default function Header() {
 
   const navItems = [
     { icon: <AiOutlineHome />, label: "Home", to: "/" },
-    { icon: <PiFacebookLogoBold />, label: "Social", to: "/social" },
+    { icon: <FaXTwitter />, label: "Social", to: "/social" },
     { icon: <GoLocation />, label: "Nearby", to: "/nearby" },
     { icon: <FiVideo />, label: "Media", to: "/media" },
     { icon: <PiBooksLight />, label: "Blogs", to: "/blogs" },
