@@ -1,8 +1,11 @@
-import React, { useRef } from 'react';
 
-const ReelCard = ({ src, onClick }) => {
+import React, { useState, useRef, useEffect } from 'react';
+import { X, Play, Search } from 'lucide-react';
+
+// ReelCard Component with masonry styling
+const ReelCard = ({ reel, onClick }) => {
   const videoRef = useRef(null);
-  const isVideo = src.match(/\.(mp4|webm|ogg)$/i);
+  const isVideo = reel.src && reel.src.match(/\.(mp4|webm|ogg)$/i);
 
   const handleMouseEnter = () => {
     if (isVideo && videoRef.current) {
@@ -17,45 +20,51 @@ const ReelCard = ({ src, onClick }) => {
     }
   };
 
+  // Random heights for masonry effect
+  const heights = ['h-48', 'h-64', 'h-80', 'h-96', 'h-52', 'h-72'];
+  const randomHeight = heights[Math.floor(Math.random() * heights.length)];
+
   return (
     <div
-      onClick={onClick}
+      onClick={() => onClick(reel)}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className="relative cursor-pointer rounded overflow-hidden shadow-lg bg-white w-full max-h-[400px] aspect-[9/16]"
+      className={`relative cursor-pointer rounded-xl overflow-hidden shadow-lg bg-white ${randomHeight} group hover:shadow-2xl transition-all duration-300 transform hover:scale-105`}
     >
       {isVideo ? (
         <>
           <video
             ref={videoRef}
-            src={src}
+            src={reel.src}
             muted
             loop
             preload="metadata"
             controls={false}
             className="w-full h-full object-cover"
           />
-          {/* Reels icon with white background and rounded corners */}
-          <div className="absolute top-2 right-2 bg-white p-1 rounded-lg">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="#000"
-            >
-              <path d="M21 3H3v18h18V3zm-2 16H5V5h14v14zM8.75 9.4c0-.58.63-.95 1.13-.63l5.25 3.3a.75.75 0 010 1.26l-5.25 3.3a.75.75 0 01-1.13-.63V9.4z" />
-              <path d="M9.88 4.25L4.25 10h2.5l5.63-5.75h-2.5z" fill="#000" />
-            </svg>
+          {/* Play overlay */}
+          <div className="absolute inset-0  bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
+            <Play className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" size={32} />
+          </div>
+          {/* Video indicator */}
+          <div className="absolute top-3 right-3 bg-black bg-opacity-60 p-1 rounded-lg">
+            <Play className="text-white" size={12} />
           </div>
         </>
       ) : (
-        <img
-          src={src}
-          alt="Reel"
-          className="w-full h-full object-cover"
-        />
+        <>
+          <img
+            src={reel.src}
+            alt="Media content"
+            className="w-full h-full object-cover"
+          />
+          {/* Hover overlay for images */}
+          <div className="absolute inset-0 bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300" />
+        </>
       )}
+      
+      {/* Gradient overlay at bottom */}
+      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent h-16 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
     </div>
   );
 };

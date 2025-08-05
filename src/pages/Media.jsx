@@ -1,113 +1,93 @@
 import React, { useState } from 'react'
 import ReelCard from '../components/ReelCard'
 import VideoModal from '../components/VideoModal'
-import Masonry from "react-masonry-css";
+import { Search } from 'lucide-react';
+import allReels from '../dummy-data/reels'
 
-
-import reel1 from '../assets/reels/reel1.mp4'
-import reel2 from '../assets/reels/reel2.mp4'
-import reel3 from '../assets/reels/reel3.mp4'
-import reel4 from '../assets/reels/reel4.mp4'
-import reel5 from '../assets/reels/reel5.mp4'
-import reel6 from '../assets/reels/reel6.mp4'
-import Image1 from '../assets/reels/Image1.jpeg'
-import reel7 from '../assets/reels/reel7.mp4'
-import reel8 from '../assets/reels/reel8.mp4'
-import reel9 from '../assets/reels/reel9.mp4'
-import reel10 from '../assets/reels/reel10.mp4'
-import reel11 from '../assets/reels/reel11.mp4'
-
-
-const allReels = [
-  { id: 1, src: reel1, type: 'video', title: "Nature" },
-  { id: 2, src: reel2, type: 'video', title: "Nature" },
-  { id: 3, src: reel3, type: 'video', title: "Animal" },
-  { id: 4, src: reel4, type: 'video', title: "Animal" },
-  { id: 5, src: reel5, type: 'video', title: "Nature" },
-  { id: 6, src: reel6, type: 'video', title: "Animal" },
-  { id: 7, src: Image1, type: 'Image', title: "Nature" },
-  { id: 8, src: reel7, type: 'video', title: "Tech" },
-  { id: 9, src: reel8, type: 'video', title: "Animal" },
-  { id: 10, src: reel9, type: 'video', title: "Animal" },
-  { id: 11, src: reel10, type: 'video', title: "Animal" },
-  { id: 12, src: reel11, type: 'video', title: "Craft" },
-
-
-]
 
 const Media = () => {
-  const [visibleReels, setVisibleReels] = useState(8)
-  const [loading, setLoading] = useState(false)
-  const [searchText, setSearchText] = useState('')
-  const [selectedVideo, setSelectedVideo] = useState(null)
+  const [visibleReels, setVisibleReels] = useState(12);
+  const [loading, setLoading] = useState(false);
+  const [searchText, setSearchText] = useState('');
+  const [selectedReel, setSelectedReel] = useState(null);
 
   const handleLoadMore = () => {
-    setLoading(true)
+    setLoading(true);
     setTimeout(() => {
-      setVisibleReels((prev) => prev + 4)
-      setLoading(false)
-    }, 1000)
-  }
+      setVisibleReels((prev) => prev + 4);
+      setLoading(false);
+    }, 1000);
+  };
 
   const filteredReels = allReels.filter((reel) =>
-    reel.title?.toLowerCase().includes(searchText.toLowerCase())
-  )
-
-
+    reel.title?.toLowerCase().includes(searchText.toLowerCase()) ||
+    reel.author?.toLowerCase().includes(searchText.toLowerCase())
+  );
 
   return (
-    <div className="bg-white min-h-screen text-black px-4 py-8">
-      {/* Heading */}
-      <h1 className="text-4xl font-bold text-center mb-6">
-        <span className="text-yellow-500">Media</span>{' '}
-        <span className="text-black">Gallery</span>
-      </h1>
+    <div className="bg-white min-h-screen text-black">
+      {/* Simple Search Bar */}
+      <div className="p-4">
+        <div className="max-w-md mx-auto relative">
+          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <Search className="h-5 w-5 text-gray-400" />
+          </div>
+          <input
+            type="text"
+            placeholder="Search"
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
+            className="w-full pl-10 pr-4 py-2 bg-gray-100 rounded-full border border-gray-200 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#d08700] focus:border-[#d08700]"
+          />
 
-      {/* Search Bar */}
-      <div className="max-w-md mx-auto mb-8">
-        <input
-          type="text"
-          placeholder="Search reels..."
-          value={searchText}
-          onChange={(e) => setSearchText(e.target.value)}
-          className="w-full px-4 py-2 rounded-md border border-gray-300 text-black"
-        />
+        </div>
       </div>
 
-      {/* Reels Grid */}
-     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
-  {filteredReels.slice(0, visibleReels).map((reel) => (
-    <ReelCard
-      key={reel.id}
-      src={reel.src}
-      onClick={() => setSelectedVideo(reel.src)}
-    />
-  ))}
-</div>
-
-
-
-      {/* Show More Button */}
-      {visibleReels < filteredReels.length && (
-        <div className="text-center mt-8">
-          <button
-            onClick={handleLoadMore}
-            className="bg-yellow-500 hover:bg-yellow-600 text-black font-medium px-6 py-2 rounded-md transition"
-          >
-            {loading ? 'Loading...' : 'Show More'}
-          </button>
+      {/* Masonry Grid */}
+      <div className="max-w-7xl mx-auto px-4 py-4">
+        <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 xl:columns-5 gap-4 space-y-4">
+          {filteredReels.slice(0, visibleReels).map((reel) => (
+            <div key={reel.id} className="break-inside-avoid mb-4">
+              <ReelCard
+                reel={reel}
+                onClick={setSelectedReel}
+              />
+            </div>
+          ))}
         </div>
-      )}
 
-      {/* Video Modal */}
-      {selectedVideo && (
+        {/* Show More Button */}
+        {visibleReels < filteredReels.length && (
+          <div className="text-center mt-8">
+            <button
+              onClick={handleLoadMore}
+            className="bg-[#d08700] hover:bg-[#a56400] text-black font-medium px-6 py-2 rounded-full transition"
+
+            >
+              {loading ? 'Loading...' : 'Show More'}
+            </button>
+          </div>
+        )}
+
+        {/* No Results */}
+        {filteredReels.length === 0 && (
+          <div className="text-center py-12">
+            <p className="text-gray-500 text-lg">No media found matching your search.</p>
+          </div>
+        )}
+      </div>
+
+      {/* Simple Video Modal */}
+      {selectedReel && (
         <VideoModal
-          src={selectedVideo}
-          onClose={() => setSelectedVideo(null)}
+          reel={selectedReel}
+          onClose={() => setSelectedReel(null)}
         />
       )}
     </div>
-  )
-}
+  );
+};
 
-export default Media
+export default Media;
+
+
