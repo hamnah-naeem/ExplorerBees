@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Play, Pause, Headphones, Volume2 } from 'lucide-react';
-import podcast from '../assets/images/podcast.png';
+import podcast from '../assets/images/podcast/podcast.png';
 
 
 

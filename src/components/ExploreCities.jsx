@@ -1,12 +1,12 @@
 import React from 'react'
-import lahore from '../assets/cities/lahore.jpg'
-import isbd from '../assets/cities/isbd.jpg'
-import karachi from '../assets/cities/karachi.jpg'
-import Peshawar from '../assets/cities/peshawar.jpg'
-import istanbul from '../assets/cities/istanbul.jpg'    
-import Antalya from '../assets/cities/antalya.jpg'
-import next from '../assets/next.png'
-import back from '../assets/back.png'
+import lahore from '../assets/images/cities/lahore.jpg'
+import isbd from '../assets/images/cities/isbd.jpg'
+import karachi from '../assets/images/cities/karachi.jpg'
+import Peshawar from '../assets/images/cities/peshawar.jpg'
+import istanbul from '../assets/images/cities/istanbul.jpg'    
+import Antalya from '../assets/images/cities/antalya.jpg'
+import next from '../assets/images/home/next.png'
+import back from '../assets/images/home/back.png'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";

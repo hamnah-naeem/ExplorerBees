@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import Newsletter from "../components/Newsletter";
-import blogsvideo from "../assets/blogs-video.mp4";
-import card1 from "../assets/blogs/card1.jpg";
-import card2 from "../assets/blogs/card2.jpg";
-import card3 from "../assets/blogs/card3.jpg";
-import card4 from "../assets/blogs/card4.jpg";
-import card5 from "../assets/blogs/card5.jpg";
-import card6 from "../assets/blogs/card6.jpg";
-import card7 from "../assets/blogs/card7.jpg";
-import card8 from "../assets/blogs/card8.jpg";
-import card9 from "../assets/blogs/card9.jpeg";
-import card10 from "../assets/blogs/card10.jpg";
+import blogsvideo from "../assets/videos/blogs/blogs-video.mp4";
+import card1 from "../assets/images/blogs/card1.jpg";
+import card2 from "../assets/images/blogs/card2.jpg";
+import card3 from "../assets/images/blogs/card3.jpg";
+import card4 from "../assets/images/blogs/card4.jpg";
+import card5 from "../assets/images/blogs/card5.jpg";
+import card6 from "../assets/images/blogs/card6.jpg";
+import card7 from "../assets/images/blogs/card7.jpg";
+import card8 from "../assets/images/blogs/card8.jpg";
+import card9 from "../assets/images/blogs/card9.jpeg";
+import card10 from "../assets/images/blogs/card10.jpg";
 
 const Blogs = () => {
   const allBlogs = [

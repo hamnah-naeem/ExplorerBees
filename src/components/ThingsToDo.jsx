@@ -1,9 +1,9 @@
 import React from "react";
 import { Mountain, Bike, Camera, Waves } from "lucide-react";
-import hikingImg from "../assets/activities/hiking.jpg";
-import waterImg from "../assets/activities/watersports.jpg";
-import ziplineImg from "../assets/activities/zipline.jpg";
-import photographyImg from "../assets/activities/photography.jpg";
+import hikingImg from "../assets/images/activities/hiking.jpg";
+import waterImg from "../assets/images/activities/watersports.jpg";
+import ziplineImg from "../assets/images/activities/zipline.jpg";
+import photographyImg from "../assets/images/activities/photography.jpg";
 
 const activities = [
   {

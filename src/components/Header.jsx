@@ -12,6 +12,7 @@ import { HiOutlineBell } from "react-icons/hi";
 import { FaRegUser } from "react-icons/fa6";
 import { HiMenu, HiX } from "react-icons/hi";
 import { useLocation } from "react-router-dom";
+import socialIcon from "../assets/images/social-icon.png";
 
 export default function Header() {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -20,7 +21,11 @@ export default function Header() {
 
   const navItems = [
     { icon: <AiOutlineHome />, label: "Home", to: "/" },
-    { icon: <FaXTwitter />, label: "Social", to: "/social" },
+    {
+      icon: <img src={socialIcon} alt="Social Icon" className="w-7 h-7" />,
+      label: "Social",
+      to: "/social",
+    },
     { icon: <GoLocation />, label: "Nearby", to: "/nearby" },
     { icon: <FiVideo />, label: "Media", to: "/media" },
     { icon: <PiBooksLight />, label: "Blogs", to: "/blogs" },
@@ -34,7 +39,7 @@ export default function Header() {
         {/* Logo Section */}
         <Link to="/" className="flex items-center">
           <img
-            src="src/assets/bee-logo.png"
+            src="src/assets/images/bee-logo.png"
             alt="Explorer Bees"
             className="w-20 h-16 object-contain"
           />

@@ -1,5 +1,5 @@
 import React from 'react'
-import footer from '../assets/mountain-footer.jpg'
+import footer from '../assets/images/home/mountain-footer.jpg'
 import { FaFacebook, FaInstagram, FaTwitter, FaLinkedin } from 'react-icons/fa'
 
 const Footer = () => {

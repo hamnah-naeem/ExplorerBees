@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import logo from "../assets/logo.png"; 
-import dp from "../assets/social/twitter-dp.jpg"; 
+import logo from "../assets/images/home/logo.png"; 
+import dp from "../assets/images/social/twitter-dp.jpg"; 
 
 export default function Questions() {
   const [questions, setQuestions] = useState([]);
@@ -27,7 +27,7 @@ export default function Questions() {
           votes: 42,
           answers: 8,
           views: 320,
-          topics: ["pakistan", "mountains", "adventure"],
+          topics: ["#pakistan", "#mountains", "#adventure"],
           time: "3 hours ago",
           isUpvoted: false,
           isDownvoted: false,
@@ -41,7 +41,7 @@ export default function Questions() {
           votes: 31,
           answers: 9,
           views: 240,
-          topics: ["turkey", "cappadocia", "landscape"],
+          topics: ["#turkey", "#cappadocia", "#landscape"],
           time: "1 day ago",
           isUpvoted: false,
           isDownvoted: false,
@@ -55,7 +55,7 @@ export default function Questions() {
           votes: 19,
           answers: 7,
           views: 175,
-          topics: ["pakistan", "hidden-gems", "culture"],
+          topics: ["#pakistan", "#hidden-gems", "#culture"],
           time: "2 days ago",
           isUpvoted: false,
           isDownvoted: false,
@@ -69,7 +69,7 @@ export default function Questions() {
           votes: 27,
           answers: 11,
           views: 210,
-          topics: ["turkey", "transport", "itinerary"],
+          topics: ["#turkey", "#transport", "#itinerary"],
           time: "1 day ago",
           isUpvoted: false,
           isDownvoted: false,
@@ -264,7 +264,8 @@ export default function Questions() {
           {/* Middle Content Area */}
           <div className={`lg:w-2/4 ${mobileView === "questions" ? 'block' : 'hidden lg:block'}`}>
             <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-semibold">
+                 <h2 className='text-3xl font-bold tracking-tighter sm:text-3xl text-center mb-3 font-serif'>
+
                 {activeTopic === "all" ? "Travel Questions" : `${activeTopic.split('-').join(' ')}`}
               </h2>
               <button 

@@ -5,12 +5,10 @@ import {
   HiBell,
   HiMail,
   HiBookmark,
-  HiOutlineUser,
   HiDotsCircleHorizontal,
   HiOutlinePhotograph,
   HiX,
 } from "react-icons/hi";
-import { FaXTwitter } from "react-icons/fa6";
 import {
   FaSearch,
   FaRegComment,
@@ -19,75 +17,17 @@ import {
   FaRegBookmark,
   FaRegShareSquare,
 } from "react-icons/fa";
-import { RiFileListLine } from "react-icons/ri";
-import logo from "../assets/logo.png";
-import twitterdp from "../assets/social/twitter-dp.jpg";
-import tweetImage from "../assets/social/tweet-image.jpeg";
+import logo from "../assets/images/home/logo.png";
+import twitterdp from "../assets/images/social/twitter-dp.jpg";
+import tweetImage from "../assets/images/social/tweet-image.jpeg";
+import {
+  tweets as initialTweets,
+  trendingItems,
+  followSuggestions,
+} from "../dummy-data/social";
 
 export default function Social() {
-  const [tweets, setTweets] = useState([
-    {
-      id: 1,
-      name: "Elon Musk",
-      handle: "@elonmusk",
-      content: "Exciting news about Starship!",
-      time: "2h",
-      likes: "24.5K",
-      retweets: "3.2K",
-      replies: "1.8K",
-      image: tweetImage,
-      repliesList: [
-        {
-          id: 101,
-          name: "Space Fan",
-          handle: "@spacefan1",
-          content: "Can't wait for the launch!",
-          time: "1h",
-        },
-        {
-          id: 102,
-          name: "Tech Enthusiast",
-          handle: "@techie",
-          content: "What's the expected payload capacity?",
-          time: "45m",
-        },
-      ],
-    },
-    {
-      id: 2,
-      name: "React",
-      handle: "@reactjs",
-      content: "React 19 is coming! #ReactJS",
-      time: "5h",
-      likes: "8.2K",
-      retweets: "1.5K",
-      replies: "432",
-      repliesList: [],
-    },
-    {
-      id: 3,
-      name: "Travel Enthusiast",
-      handle: "@wanderlust",
-      content:
-        "Just visited the Maldives! The water is crystal clear and the beaches are pristine. #Travel #Maldives",
-      time: "3h",
-      likes: "5.7K",
-      retweets: "1.2K",
-      replies: "289",
-      image:
-        "https://images.unsplash.com/photo-1573843981267-be1999ff37cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
-      repliesList: [
-        {
-          id: 103,
-          name: "Vacation Planner",
-          handle: "@travelpro",
-          content: "What resort did you stay at? Looking for recommendations!",
-          time: "2h",
-        },
-      ],
-    },
-  ]);
-
+  const [tweets, setTweets] = useState(initialTweets);
   const [newTweet, setNewTweet] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
   const [replyingTo, setReplyingTo] = useState(null);
@@ -167,14 +107,10 @@ export default function Social() {
           {/* Left Sidebar */}
           <div className="lg:col-span-2 xl:col-span-3 px-2 sticky top-0 h-screen hidden md:flex flex-col justify-between py-2">
             <div className="flex flex-col">
-              <SidenavLink Icon={FaXTwitter} className=" text-3xl mb-4" />
               <SidenavLink active Icon={HiHome} text="Home" />
               <SidenavLink Icon={HiHashtag} text="Explore" />
-              <SidenavLink Icon={HiBell} text="Notifications" />
               <SidenavLink Icon={HiMail} text="Messages" />
-              <SidenavLink Icon={RiFileListLine} text="Lists" />
               <SidenavLink Icon={HiBookmark} text="Bookmarks" />
-              <SidenavLink Icon={HiOutlineUser} text="Profile" />
               <SidenavLink Icon={HiDotsCircleHorizontal} text="More" />
 
               <button
@@ -219,6 +155,9 @@ export default function Social() {
                 <div key={tweet.id}>
                   <Tweet
                     {...tweet}
+                    image={
+                      tweet.image === "tweetImage" ? tweetImage : tweet.image
+                    }
                     onReply={() => setReplyingTo(tweet.id)}
                     showReplyForm={replyingTo === tweet.id}
                     replyContent={replyContent}
@@ -317,21 +256,9 @@ export default function Social() {
 
             <div className="bg-gray-800 rounded-2xl p-4 mb-4">
               <h2 className="text-lg font-bold mb-3">What's happening</h2>
-              <TrendingItem
-                category="Tech · Trending"
-                title="React 19"
-                count="5.2K Tweets"
-              />
-              <TrendingItem
-                category="Travel · Trending"
-                title="#VisitJapan"
-                count="45.3K Tweets"
-              />
-              <TrendingItem
-                category="Tourism"
-                title="Bali Reopens"
-                count="32.1K Tweets"
-              />
+              {trendingItems.map((item, index) => (
+                <TrendingItem key={index} {...item} />
+              ))}
               <button className="text-blue-400 hover:text-blue-300 mt-2 text-sm">
                 Show more
               </button>
@@ -339,16 +266,13 @@ export default function Social() {
 
             <div className="bg-gray-800 rounded-2xl p-4">
               <h2 className="text-lg font-bold mb-3">Who to follow</h2>
-              <FollowSuggestion
-                name="Lonely Planet"
-                handle="@lonelyplanet"
-                avatar={twitterdp}
-              />
-              <FollowSuggestion
-                name="Travel + Leisure"
-                handle="@TravelLeisure"
-                avatar={twitterdp}
-              />
+              {followSuggestions.map((suggestion, index) => (
+                <FollowSuggestion
+                  key={index}
+                  {...suggestion}
+                  avatar={twitterdp}
+                />
+              ))}
               <button className="text-blue-400 hover:text-blue-300 mt-2 text-sm">
                 Show more
               </button>

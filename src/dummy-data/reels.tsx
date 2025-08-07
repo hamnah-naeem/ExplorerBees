@@ -1,20 +1,19 @@
-import reel1 from '../assets/reels/reel1.mp4'
-import reel2 from '../assets/reels/reel2.mp4'
-import reel3 from '../assets/reels/reel3.mp4'
-import reel4 from '../assets/reels/reel4.mp4'
-import reel5 from '../assets/reels/reel5.mp4'
-import reel6 from '../assets/reels/reel6.mp4'
-import Image1 from '../assets/reels/Image1.jpeg'
-import reel7 from '../assets/reels/reel7.mp4'
-import reel8 from '../assets/reels/reel8.mp4'
-import reel9 from '../assets/reels/reel9.mp4'
-import reel10 from '../assets/reels/reel10.mp4'
-import reel11 from '../assets/reels/reel11.mp4'
-import Image2 from '../assets/reels/Image2.jpeg'
-import Image3 from '../assets/reels/Image3.jpeg'
-import Image4 from '../assets/reels/Image4.jpeg'
-import Image5 from '../assets/reels/Image5.jpeg'
-
+import reel1 from '../assets/videos/reels/reel1.mp4'
+import reel2 from'../assets/videos/reels/reel2.mp4'
+import reel3 from'../assets/videos/reels/reel3.mp4'
+import reel4 from'../assets/videos/reels/reel4.mp4'
+import reel5 from'../assets/videos/reels/reel5.mp4'
+import reel6 from'../assets/videos/reels/reel6.mp4'
+import Image1 from'../assets/images/reels/Image1.jpeg'
+import reel7 from'../assets/videos/reels/reel7.mp4'
+import reel8 from'../assets/videos/reels/reel8.mp4'
+import reel9 from'../assets/videos/reels/reel9.mp4'
+import reel10 from'../assets/videos/reels/reel10.mp4'
+import reel11 from'../assets/videos/reels/reel11.mp4'
+import Image2 from'../assets/images/reels/Image2.jpeg'
+import Image3 from'../assets/images/reels/Image3.jpeg'
+import Image4 from'../assets/images/reels/Image4.jpeg'
+import Image5 from'../assets/images/reels/Image5.jpeg'
 
 
 
@@ -128,8 +127,8 @@ import Image5 from '../assets/reels/Image5.jpeg'
     id: 14,
     src: Image3,
     type: 'image',
-    title: "Craft",
-    author: "DIY Creator",
+    title: "Nature",
+    author: "Alexa",
     description: "Creative crafts and DIY projects"
   },
   {
