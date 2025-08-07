@@ -197,7 +197,6 @@ const Blogs = () => {
       {/* Search & Tags */}
       <section className="max-w-7xl mx-auto px-6 mt-16 mb-12">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          
           <div className="relative w-full md:w-1/2">
             <input
               type="text"
@@ -251,15 +250,14 @@ const Blogs = () => {
 
       {/* Blog Cards */}
       <section className="py-12 px-6 max-w-7xl mx-auto">
-        <h2 className="text-3xl font-bold text-black mb-12 text-center">
+        <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-center mb-3 font-serif">
           {filteredBlogs.length > 0 ? (
-            <>
-              Latest <span className="text-yellow-600">Travel Stories</span>
-            </>
+            <>Latest Travel Stories</>
           ) : (
             <>No results found {searchTerm && `for "${searchTerm}"`}</>
           )}
         </h2>
+        <hr className="text-red-500 w-[100px] bg-yellow-500 mx-auto h-1 mb-10" />
 
         {filteredBlogs.length > 0 ? (
           <>

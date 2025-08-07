@@ -2,7 +2,7 @@ import twitterdp from "../assets/images/social/twitter-dp.jpg";
 import tweetImage from "../assets/images/social/tweet-image.jpeg";
 
 
-export const tweets = [
+export const posts = [
   {
     id: 1,
     name: "Elon Musk",
