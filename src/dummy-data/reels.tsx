@@ -128,9 +128,9 @@ import Image5 from '../assets/reels/Image5.jpeg'
     id: 14,
     src: Image3,
     type: 'image',
-    title: "Craft",
-    author: "DIY Creator",
-    description: "Creative crafts and DIY projects"
+    title: "Nature",
+    author: "Marine Biologist",
+    description: "Underwater world and marine life"
   },
   {
     id: 14,
