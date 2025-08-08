@@ -1,13 +1,10 @@
 import { useState, useRef } from "react";
 import {
   HiHome,
-  HiHashtag,
-  HiBell,
   HiMail,
   HiBookmark,
   HiDotsCircleHorizontal,
   HiOutlinePhotograph,
-  HiX,
 } from "react-icons/hi";
 import { FaSearch, FaShare } from "react-icons/fa";
 import logo from "../assets/images/home/logo.png";
@@ -46,34 +43,43 @@ export default function Social() {
     }
   };
 
-  const handlePost = () => {
-    if (newPost.trim() || selectedImage) {
-      const post = {
-        id: Date.now(),
-        name: "Explorer Bees",
-        handle: "explorer_bees",
-        content: newPost,
-        time: "Just now",
-        likes: "0",
-        shares: "0",
-        replies: "0",
-        image: selectedImage,
-        poll: poll
-          ? {
-              options: poll.options,
-              votes: poll.options.map(() => 0), // Initialize votes to 0 for each option
-            }
-          : null,
-        repliesList: [],
-      };
-      setPosts([post, ...posts]);
-      setNewPost("");
-      setSelectedImage(null);
-      if (fileInputRef.current) {
-        fileInputRef.current.value = "";
-      }
-    }
-  };
+ const handlePost = (postData) => {
+   const { content, image, poll } = postData;
+
+   if (
+     content.trim() ||
+     image ||
+     (poll && poll.options.some((opt) => opt.trim() !== ""))
+   ) {
+     const newPost = {
+       id: Date.now(),
+       name: "Explorer Bees",
+       handle: "explorer_bees",
+       avatar: logo,
+       content: content,
+       time: "Just now",
+       likes: "0",
+       shares: "0",
+       replies: "0",
+       image: image,
+       poll: poll
+         ? {
+             options: poll.options,
+             votes: poll.options.map(() => 0), // Initialize all votes to 0
+             totalVotes: 0,
+           }
+         : null,
+       repliesList: [],
+     };
+
+     setPosts([newPost, ...posts]);
+     setNewPost("");
+     setSelectedImage(null);
+     if (fileInputRef.current) {
+       fileInputRef.current.value = "";
+     }
+   }
+ };
 
   const handleReply = (postId) => {
     if (replyContent.trim()) {
@@ -160,7 +166,7 @@ export default function Social() {
             <div className="flex flex-col">
               <SidenavLink active Icon={HiHome} text="Home" />
               <SidenavLink Icon={FaSearch} text="Explore" />
-             <SidenavLink Icon={HiMail} text="Messages" />
+              <SidenavLink Icon={HiMail} text="Messages" />
               <SidenavLink Icon={HiBookmark} text="Bookmarks" />
               <SidenavLink Icon={HiDotsCircleHorizontal} text="More" />
 
@@ -185,7 +191,6 @@ export default function Social() {
           <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 flex justify-around py-3 md:hidden z-50">
             <SidenavLink active Icon={HiHome} compact />
             <SidenavLink Icon={FaSearch} compact />
-            {/* <SidenavLink Icon={HiBell} compact /> */}
             <SidenavLink Icon={HiMail} compact />
           </div>
 
@@ -198,7 +203,7 @@ export default function Social() {
             <PostBox
               value={newPost}
               onChange={setNewPost}
-              onPost={handlePost}
+              onPost={handlePost} 
               selectedImage={selectedImage}
               onImageUpload={handleImageUpload}
               removeImage={removeImage}
@@ -211,7 +216,6 @@ export default function Social() {
                 <div key={post.id}>
                   <Post
                     {...post}
-                    avatar={twitterdp}
                     onReply={() => setReplyingTo(post.id)}
                   />
 
