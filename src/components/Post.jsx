@@ -16,6 +16,7 @@ export default function Post({
   shares,
   replies,
   image,
+  poll,
   onReply,
   avatar,
 }) {
@@ -43,6 +44,29 @@ export default function Post({
               alt="Post content"
               className="rounded-2xl max-h-80 w-full object-cover mb-2"
             />
+          )}
+          {poll && (
+            <div className="mt-3 mb-3 border border-gray-200 rounded-xl p-3">
+              <div className="font-medium mb-2"></div>
+              {poll.options.map((option, index) => (
+                <div key={index} className="mb-2">
+                  <div className="flex items-center">
+                    <div className="flex-1 bg-gray-100 rounded-full h-8 relative">
+                      <div
+                        className="bg-yellow-500 h-full rounded-full"
+                        style={{ width: `${poll.votes[index] || 0}%` }}
+                      ></div>
+                      <div className="absolute inset-0 flex items-center px-3 text-sm">
+                        {option}
+                      </div>
+                    </div>
+                    <div className="ml-2 text-sm text-gray-500">
+                      {poll.votes[index] || 0}%
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           )}
           <div className="flex justify-between text-gray-500 max-w-md mt-2">
             <button

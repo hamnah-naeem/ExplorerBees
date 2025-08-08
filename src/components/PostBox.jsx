@@ -47,19 +47,31 @@ export default function PostBox({
     setPollOptions(newOptions);
   };
 
-  const handleSubmit = () => {
-    const postData = {
-      content: value,
-      image: selectedImage,
-      poll: showPollForm ? { 
-        options: pollOptions.filter(opt => opt.trim() !== "")
-      } : null
-    };
+const handleSubmit = () => {
+  // Filter out empty options
+  const validPollOptions = showPollForm
+    ? pollOptions.filter((opt) => opt.trim() !== "")
+    : null;
 
-    onPost(postData);
+  // Only include poll if there are at least 2 valid options
+  const postData = {
+    content: value,
+    image: selectedImage,
+    poll:
+      showPollForm && validPollOptions.length >= 2
+        ? { options: validPollOptions }
+        : null,
+  };
+
+  onPost(postData);
+
+  // Reset form only if post was successful
+  if (postData.content || postData.image || postData.poll) {
     setShowPollForm(false);
     setPollOptions(["", ""]);
-  };
+    onChange(""); // Clear text content
+  }
+};
 
   return (
     <div className="border-b border-gray-200 p-4">
@@ -84,7 +96,9 @@ export default function PostBox({
                     <input
                       type="text"
                       value={option}
-                      onChange={(e) => handlePollOptionChange(index, e.target.value)}
+                      onChange={(e) =>
+                        handlePollOptionChange(index, e.target.value)
+                      }
                       placeholder={`Option ${index + 1}`}
                       className="flex-1 p-2 border border-gray-300 rounded-md"
                     />
@@ -134,9 +148,9 @@ export default function PostBox({
 
           {showEmojiPicker && (
             <div className="absolute z-10 top-full left-0 mt-2">
-              <EmojiPicker 
-                onEmojiClick={addEmoji} 
-                width={300} 
+              <EmojiPicker
+                onEmojiClick={addEmoji}
+                width={300}
                 height={350}
                 previewConfig={{ showPreview: false }}
                 skinTonesDisabled
@@ -185,12 +199,24 @@ export default function PostBox({
 
             <button
               onClick={handleSubmit}
-              disabled={!value.trim() && !selectedImage && !(showPollForm && pollOptions.some(opt => opt.trim() !== ""))}
+              disabled={
+                !value.trim() &&
+                !selectedImage &&
+                !(
+                  showPollForm &&
+                  pollOptions.filter((opt) => opt.trim() !== "").length >= 2
+                )
+              }
               className={`font-bold px-4 py-1.5 rounded-full text-sm ${
-                !value.trim() && !selectedImage && !(showPollForm && pollOptions.some(opt => opt.trim() !== ""))
+                !value.trim() &&
+                !selectedImage &&
+                !(
+                  showPollForm &&
+                  pollOptions.filter((opt) => opt.trim() !== "").length >= 2
+                )
                   ? "bg-gray-300 text-gray-500 cursor-not-allowed"
                   : "bg-black hover:bg-yellow-700 text-white"
-              } transition-colors duration-200`}
+              }`}
             >
               Post
             </button>
