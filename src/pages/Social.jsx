@@ -1,13 +1,10 @@
 import { useState, useRef } from "react";
 import {
   HiHome,
-  HiHashtag,
-  HiBell,
   HiMail,
   HiBookmark,
   HiDotsCircleHorizontal,
   HiOutlinePhotograph,
-  HiX,
 } from "react-icons/hi";
 import { FaSearch, FaShare } from "react-icons/fa";
 import logo from "../assets/images/home/logo.png";
@@ -185,7 +182,6 @@ export default function Social() {
           <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 flex justify-around py-3 md:hidden z-50">
             <SidenavLink active Icon={HiHome} compact />
             <SidenavLink Icon={FaSearch} compact />
-            {/* <SidenavLink Icon={HiBell} compact /> */}
             <SidenavLink Icon={HiMail} compact />
           </div>
 
