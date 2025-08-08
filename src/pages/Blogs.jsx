@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import Newsletter from "../components/Newsletter";
-import blogsvideo from "../assets/blogs-video.mp4";
-import card1 from "../assets/blogs/card1.jpg";
-import card2 from "../assets/blogs/card2.jpg";
-import card3 from "../assets/blogs/card3.jpg";
-import card4 from "../assets/blogs/card4.jpg";
-import card5 from "../assets/blogs/card5.jpg";
-import card6 from "../assets/blogs/card6.jpg";
-import card7 from "../assets/blogs/card7.jpg";
-import card8 from "../assets/blogs/card8.jpg";
-import card9 from "../assets/blogs/card9.jpeg";
-import card10 from "../assets/blogs/card10.jpg";
+import blogsvideo from "../assets/videos/blogs/blogs-video.mp4";
+import card1 from "../assets/images/blogs/card1.jpg";
+import card2 from "../assets/images/blogs/card2.jpg";
+import card3 from "../assets/images/blogs/card3.jpg";
+import card4 from "../assets/images/blogs/card4.jpg";
+import card5 from "../assets/images/blogs/card5.jpg";
+import card6 from "../assets/images/blogs/card6.jpg";
+import card7 from "../assets/images/blogs/card7.jpg";
+import card8 from "../assets/images/blogs/card8.jpg";
+import card9 from "../assets/images/blogs/card9.jpeg";
+import card10 from "../assets/images/blogs/card10.jpg";
 
 const Blogs = () => {
   const allBlogs = [
@@ -197,7 +197,6 @@ const Blogs = () => {
       {/* Search & Tags */}
       <section className="max-w-7xl mx-auto px-6 mt-16 mb-12">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          
           <div className="relative w-full md:w-1/2">
             <input
               type="text"
@@ -251,15 +250,14 @@ const Blogs = () => {
 
       {/* Blog Cards */}
       <section className="py-12 px-6 max-w-7xl mx-auto">
-        <h2 className="text-3xl font-bold text-black mb-12 text-center">
+        <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-center mb-3 font-serif">
           {filteredBlogs.length > 0 ? (
-            <>
-              Latest <span className="text-yellow-600">Travel Stories</span>
-            </>
+            <>Latest Travel Stories</>
           ) : (
             <>No results found {searchTerm && `for "${searchTerm}"`}</>
           )}
         </h2>
+        <hr className="text-red-500 w-[100px] bg-yellow-500 mx-auto h-1 mb-10" />
 
         {filteredBlogs.length > 0 ? (
           <>

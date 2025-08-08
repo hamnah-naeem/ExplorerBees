@@ -3,13 +3,13 @@ import Slider from "react-slick"
 import { Clock, Star } from 'lucide-react'
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
-import next from '../assets/next.png'
-import back from '../assets/back.png'
-import haveli from '../assets/restaurants/haveli-lahore.jpg'
-import chalet from '../assets/restaurants/chalet-istanbul.jpg'
-import bbqtonight from '../assets/restaurants/bbqtonight-karachi.jpg'
-import isbdrest from '../assets/restaurants/isbdrest.jpg'
-import zeytin from '../assets/restaurants/zeytin-antalya.png'
+import next from '../assets/images/home/next.png'
+import back from "../assets/images/home/back.png";
+import haveli from '../assets/images/restaurants/haveli-lahore.jpg'
+import chalet from '../assets/images/restaurants/chalet-istanbul.jpg'
+import bbqtonight from '../assets/images/restaurants/bbqtonight-karachi.jpg'
+import isbdrest from '../assets/images/restaurants/isbdrest.jpg'
+import zeytin from '../assets/images/restaurants/zeytin-antalya.png'
 const SlickArrowLeft = ({ ...props }) => (
     <img src={back} alt="prevArrow" {...props} />
 )

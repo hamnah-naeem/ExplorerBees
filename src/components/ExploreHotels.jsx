@@ -1,13 +1,13 @@
 import React from 'react'
-import lahoreHotel from '../assets/hotels/pc-lahore.jpeg'
-import isbdHotel from '../assets/hotels/serena-isbd.jpeg'
-import karachiHotel from '../assets/hotels/movenpickl-karachi.jpg'
-import peshawarHotel from '../assets/hotels/fortcont-peshawar.jpg'
-import istanbulHotel from '../assets/hotels/swissotel-istanbul.jpg'
-import antalyaHotel from '../assets/hotels/akra-antalya.jpeg'
-import ankaraHotel from '../assets/hotels/ankara-ankara.jpeg'
-import next from '../assets/next.png'
-import back from '../assets/back.png'
+import lahoreHotel from '../assets/images/hotels/pc-lahore.jpeg'
+import isbdHotel from '../assets/images/hotels/serena-isbd.jpeg'
+import karachiHotel from '../assets/images/hotels/movenpickl-karachi.jpg'
+import peshawarHotel from '../assets/images/hotels/fortcont-peshawar.jpg'
+import istanbulHotel from '../assets/images/hotels/swissotel-istanbul.jpg'
+import antalyaHotel from '../assets/images/hotels/akra-antalya.jpeg'
+import ankaraHotel from '../assets/images/hotels/ankara-ankara.jpeg'
+import next from '../assets/images/home/next.png'
+import back from '../assets/images/home/back.png'
 import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Search } from 'lucide-react';
-import herovideo from '../assets/hero-video.mp4';
+import herovideo from '../assets/videos/home/hero-video.mp4';
 
 const Hero = () => {
   const [selectedCountry, setSelectedCountry] = useState('');
