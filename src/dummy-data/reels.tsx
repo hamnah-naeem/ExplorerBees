@@ -132,7 +132,7 @@ import Image5 from'../assets/images/reels/Image5.jpeg'
     description: "Underwater world and marine life"
   },
   {
-    id: 14,
+    id: 15,
     src: Image4,
     type: 'image',
     title: "Craft",
@@ -140,7 +140,7 @@ import Image5 from'../assets/images/reels/Image5.jpeg'
     description: "Creative crafts and DIY projects"
   },
   {
-    id: 15,
+    id: 16,
     src: Image5,
     type: 'image',
     title: "Nature",
