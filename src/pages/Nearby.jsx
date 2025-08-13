@@ -134,7 +134,7 @@ const Nearby = () => {
   } = state;
 
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-800 p-4 md:p-8 max-w-7xl mx-auto">
+    <div className="min-h-screen  text-gray-800 p-4 md:p-8 max-w-7xl mx-auto">
       <header className="mb-8">
         <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-3 font-serif">
           Discover Nearby Places
