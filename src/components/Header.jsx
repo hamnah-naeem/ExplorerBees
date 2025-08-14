@@ -91,12 +91,20 @@ export default function Header() {
             </button>
             {showDropdown && (
               <div className="absolute right-0 mt-2 bg-white shadow-md rounded-md w-40 text-gray-800 z-10">
-                <div className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                  User Login
-                </div>
-                <div className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                  Partner Login
-                </div>
+                <Link
+                  to="/login"
+                  className="block px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                  onClick={() => setShowDropdown(false)}
+                >
+                  Login
+                </Link>
+                <Link
+                  to="/register"
+                  className="block px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                  onClick={() => setShowDropdown(false)}
+                >
+                  Sign Up
+                </Link>
               </div>
             )}
           </div>
@@ -112,6 +120,7 @@ export default function Header() {
                 to={item.to}
                 key={index}
                 className="flex items-center space-x-3 hover:text-yellow-600 transition"
+                onClick={() => setIsMobileMenuOpen(false)}
               >
                 <div className="text-2xl">{item.icon}</div>
                 <span>{item.label}</span>
@@ -132,12 +141,26 @@ export default function Header() {
 
             {showDropdown && (
               <div className="bg-white shadow-md rounded-md mt-2 w-full text-gray-800 z-10">
-                <div className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                  User Login
-                </div>
-                <div className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                  Partner Login
-                </div>
+                <Link
+                  to="/login"
+                  className="block px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                  onClick={() => {
+                    setShowDropdown(false);
+                    setIsMobileMenuOpen(false);
+                  }}
+                >
+                  Login
+                </Link>
+                <Link
+                  to="/register"
+                  className="block px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                  onClick={() => {
+                    setShowDropdown(false);
+                    setIsMobileMenuOpen(false);
+                  }}
+                >
+                  Sign Up
+                </Link>
               </div>
             )}
           </div>
