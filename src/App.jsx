@@ -8,6 +8,7 @@ import Media from './pages/Media';
 import Podcast from './pages/Podcast';
 import Questions from './pages/Questions';
 import Blogs from './pages/Blogs';
+import Profile from './pages/Profile';
 import ExploreCities from './components/ExploreCities';
 import ExploreHotels from './components/ExploreHotels';
 import ExploreRestaurants from "./components/ExploreRestaurants";
@@ -29,10 +30,12 @@ function App() {
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/podcast" element={<Podcast />} />
           <Route path="/questions" element={<Questions />} />
+         
           <Route path="/explorecities" element={<ExploreCities />} />
           <Route path="/explorehotels" element={<ExploreHotels />} />
           <Route path="/explorerestaurants" element={<ExploreRestaurants />} />
           <Route path="/thingstodo" element={<ThingsToDo />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
       </main>
       {!isSocialPage && <Footer />}
