@@ -108,6 +108,7 @@ import Questions from './pages/Questions';
 import Blogs from './pages/Blogs';
 import LoginPage from './pages/Login'; // Import the LoginPage component
 import RegisterPage from './pages/Registration'; // Import the RegisterPage component
+import Profile from './pages/Profile';
 import ExploreCities from './components/ExploreCities';
 import ExploreHotels from './components/ExploreHotels';
 import ExploreRestaurants from "./components/ExploreRestaurants";
@@ -134,10 +135,12 @@ function App() {
           <Route path="/questions" element={<Questions />} />
           <Route path="/login" element={<LoginPage />} /> {/* Add login route */}
           <Route path="/register" element={<RegisterPage />} /> {/* Add register route */}
+         
           <Route path="/explorecities" element={<ExploreCities />} />
           <Route path="/explorehotels" element={<ExploreHotels />} />
           <Route path="/explorerestaurants" element={<ExploreRestaurants />} />
           <Route path="/thingstodo" element={<ThingsToDo />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
       </main>
       
