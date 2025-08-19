@@ -2,12 +2,12 @@ import { User, MapPin, Bell, Globe, Calendar, Star } from "lucide-react";
 
 export default function RegisterLeftSide() {
   return (
-    <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-yellow-600 to-yellow-700 p-12 flex-col justify-evenly text-white">
+    <div className="hidden lg:flex lg:w-1/2 bg-yellow-600  p-12 flex-col justify-evenly text-white">
       
       {/* Top Section */}
       <div>
         <h1 className="text-4xl font-bold mb-4">Join ExplorerBees Today</h1>
-        <p className="text-xl text-yellow-100">
+        <p className="text-xl text-White-100">
           Unlock personalized travel experiences and start exploring the world's hidden gems.
         </p>
       </div>

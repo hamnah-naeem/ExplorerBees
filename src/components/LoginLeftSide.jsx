@@ -4,7 +4,7 @@ import { GoLocation } from "react-icons/go";
 
 export default function LoginLeftSide() {
   return (
-    <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-yellow-600 to-yellow-700 p-12 flex-col justify-center items-start text-white relative">
+    <div className="hidden lg:flex lg:w-1/2 bg-yellow-600  p-12 flex-col justify-center items-start text-white relative">
       <div className="mb-26">
         <h1 className="text-4xl font-bold mb-6">Welcome to Explorer Bees</h1>
         <p className="text-xl mb-10 text-yellow-100">
