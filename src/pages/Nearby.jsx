@@ -3,7 +3,7 @@ import { FiMapPin, FiNavigation } from "react-icons/fi";
 import { Map } from "../components/Map";
 import { PlacesList } from "../components/PlacesList";
 
-const DEFAULT_CENTER = { lat: 40.7128, lng: -74.006 };
+const DEFAULT_CENTER = { lat: 33.6844, lng: 73.0479 }; //fallback (Islamabad) if user denies location access 
 
 const Nearby = () => {
   const [state, setState] = useState({
@@ -38,7 +38,7 @@ const Nearby = () => {
       try {
         const request = {
           location: new window.google.maps.LatLng(lat, lng),
-          radius: 5000,
+          radius: 10000, //10km
           type: state.activeTab === "hotels" ? "lodging" : "restaurant",
         };
 
