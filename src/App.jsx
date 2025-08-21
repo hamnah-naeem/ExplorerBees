@@ -9,7 +9,7 @@ import Podcast from './pages/Podcast';
 import Questions from './pages/Questions';
 import Blogs from './pages/Blogs';
 import LoginPage from './pages/Login'; // Import the LoginPage component
-import RegisterPage from './pages/Registration'; // Import the RegisterPage component
+import RegisterPage from './pages/registration'; // Import the RegisterPage component
 import Profile from './pages/Profile';
 import ExploreCities from './components/ExploreCities';
 import ExploreHotels from './components/ExploreHotels';
@@ -20,11 +20,11 @@ import BlogDetail from './components/BlogDetail'; // Import the BlogDetail compo
 function App() {
   const location = useLocation();
   const isSocialPage = location.pathname === "/social";
-  const isAuthPage = location.pathname === "/login" || location.pathname === "/register"; // Check for both auth pages
+  const isAuthPage = location.pathname === "/login" || location.pathname === "/Registration"; // Uncommented this line
 
   return (
     <div className="min-h-screen flex flex-col">
-      {/* Only show Header if not on auth pages (since auth components have their own Headers) */}
+      {/* Only show Header if not on auth pages */}
       {!isAuthPage && <Header />}
       
       <main className="flex-grow">
@@ -36,9 +36,8 @@ function App() {
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/podcast" element={<Podcast />} />
           <Route path="/questions" element={<Questions />} />
-          <Route path="/login" element={<LoginPage />} /> {/* Add login route */}
-          <Route path="/register" element={<RegisterPage />} /> {/* Add register route */}
-         
+          <Route path="/login" element={<LoginPage />} />
+       <Route path="/registration" element={<RegisterPage />} />
           <Route path="/explorecities" element={<ExploreCities />} />
           <Route path="/explorehotels" element={<ExploreHotels />} />
           <Route path="/explorerestaurants" element={<ExploreRestaurants />} />
@@ -48,7 +47,7 @@ function App() {
         </Routes>
       </main>
       
-      {/* Only show Footer if not on social page or auth pages (since auth components have their own Footers) */}
+      {/* Only show Footer if not on social page or auth pages */}
       {!isSocialPage && !isAuthPage && <Footer />}
     </div>
   );

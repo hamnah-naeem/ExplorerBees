@@ -101,7 +101,7 @@ export default function Header() {
                   Login
                 </Link>
                 <Link
-                  to="/register"
+                  to="/Registration"
                   className="block px-4 py-2 hover:bg-gray-100 cursor-pointer"
                   onClick={() => setShowDropdown(false)}
                 >
@@ -156,7 +156,7 @@ export default function Header() {
                   Login
                 </Link>
                 <Link
-                  to="/register"
+                  to="/registration"
                   className="block px-4 py-2 hover:bg-gray-100 cursor-pointer"
                   onClick={() => {
                     setShowDropdown(false);
