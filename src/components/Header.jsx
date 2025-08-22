@@ -80,7 +80,9 @@ export default function Header() {
         <div className="hidden lg:flex items-center space-x-5">
           <VscSearch className="text-2xl text-gray-600 hover:text-yellow-500 cursor-pointer transition duration-200" />
           <HiOutlineBell className="text-2xl text-gray-600 hover:text-yellow-500 cursor-pointer transition duration-200" />
-          <FaRegUser className="text-2xl text-gray-600 hover:text-yellow-500 cursor-pointer transition duration-200" />
+          <Link to="/profile">
+            <FaRegUser className="text-2xl text-gray-600 hover:text-yellow-500 cursor-pointer transition duration-200" />
+          </Link>
 
           <div className="relative">
             <button
@@ -99,7 +101,7 @@ export default function Header() {
                   Login
                 </Link>
                 <Link
-                  to="/register"
+                  to="/Registration"
                   className="block px-4 py-2 hover:bg-gray-100 cursor-pointer"
                   onClick={() => setShowDropdown(false)}
                 >
@@ -130,7 +132,9 @@ export default function Header() {
             <div className="flex items-center space-x-4 pt-4 border-t border-gray-200">
               <VscSearch className="text-2xl text-gray-600 hover:text-yellow-500 cursor-pointer" />
               <HiOutlineBell className="text-2xl text-gray-600 hover:text-yellow-500 cursor-pointer" />
-              <FaRegUser className="text-2xl text-gray-600 hover:text-yellow-500 cursor-pointer" />
+              <Link to="/profile">
+                <FaRegUser className="text-2xl text-gray-600 hover:text-yellow-500 cursor-pointer" />
+              </Link>
               <button
                 onClick={() => setShowDropdown(!showDropdown)}
                 className="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold px-4 py-1.5 rounded-full text-sm"
@@ -152,7 +156,7 @@ export default function Header() {
                   Login
                 </Link>
                 <Link
-                  to="/register"
+                  to="/registration"
                   className="block px-4 py-2 hover:bg-gray-100 cursor-pointer"
                   onClick={() => {
                     setShowDropdown(false);

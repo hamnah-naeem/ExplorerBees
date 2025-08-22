@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Newsletter from "../components/Newsletter";
+import { Link } from "react-router-dom"; // Add this line
 import blogsvideo from "../assets/videos/blogs/blogs-video.mp4";
 import card1 from "../assets/images/blogs/card1.jpg";
 import card2 from "../assets/images/blogs/card2.jpg";
@@ -131,11 +132,10 @@ const Blogs = () => {
             ].map((tag) => (
               <span
                 key={tag}
-                className={`px-4 py-1.5 text-sm rounded-lg font-medium cursor-pointer transition-all duration-200 shadow-sm border ${
-                  activeTag === tag
+                className={`px-4 py-1.5 text-sm rounded-lg font-medium cursor-pointer transition-all duration-200 shadow-sm border ${activeTag === tag
                     ? "bg-yellow-600 text-black border-yellow-600"
                     : "bg-white text-black border-gray-200 hover:border-yellow-600"
-                }`}
+                  }`}
                 onClick={() => handleTagClick(tag)}
               >
                 #{tag}
@@ -188,9 +188,8 @@ const Blogs = () => {
                       {blog.tags.map((tag) => (
                         <span
                           key={tag}
-                          className={`bg-gray-100 text-black text-xs font-medium px-3 py-1 rounded-lg hover:bg-yellow-600 hover:text-white transition ${
-                            activeTag === tag ? "bg-yellow-600 text-white" : ""
-                          }`}
+                          className={`bg-gray-100 text-black text-xs font-medium px-3 py-1 rounded-lg hover:bg-yellow-600 hover:text-white transition ${activeTag === tag ? "bg-yellow-600 text-white" : ""
+                            }`}
                           onClick={() => handleTagClick(tag)}
                         >
                           {tag}
@@ -217,9 +216,15 @@ const Blogs = () => {
                         </p>
                         <p className="text-xs text-gray-500">Travel Writer</p>
                       </div>
-                      <button className="ml-auto px-4 py-2 bg-black text-white text-sm font-semibold rounded-lg hover:bg-yellow-600 transition">
+                      {/* <button className="ml-auto px-4 py-2 bg-black text-white text-sm font-semibold rounded-lg hover:bg-yellow-600 transition">
                         Read →
-                      </button>
+                      </button> */}
+                      <Link
+                        to={`/blog/${blog.id}`}
+                        className="ml-auto px-4 py-2 bg-black text-white text-sm font-semibold rounded-lg hover:bg-yellow-600 transition"
+                      >
+                        Read →
+                      </Link>
                     </div>
                   </div>
                 </div>
