@@ -9,7 +9,8 @@ import Podcast from './pages/Podcast';
 import Questions from './pages/Questions';
 import Blogs from './pages/Blogs';
 import LoginPage from './pages/Login'; // Import the LoginPage component
-import RegisterPage from './pages/Registration'; // Import the RegisterPage component
+import RegisterPage from './pages/registration'; // Import the RegisterPage component
+import Profile from './pages/Profile';
 import Profile from './pages/Profile';
 import ExploreCities from './components/ExploreCities';
 import ExploreHotels from './components/ExploreHotels';
