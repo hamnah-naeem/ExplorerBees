@@ -37,7 +37,7 @@ function App() {
           <Route path="/podcast" element={<Podcast />} />
           <Route path="/questions" element={<Questions />} />
           <Route path="/login" element={<LoginPage />} />
-       <Route path="/registration" element={<RegisterPage />} />
+          <Route path="/Registration" element={<RegisterPage />} />
           <Route path="/explorecities" element={<ExploreCities />} />
           <Route path="/explorehotels" element={<ExploreHotels />} />
           <Route path="/explorerestaurants" element={<ExploreRestaurants />} />
