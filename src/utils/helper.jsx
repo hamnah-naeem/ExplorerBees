@@ -1,0 +1,1 @@
+export const imageURL = "https://app.explorerbees.com/media/images/";
