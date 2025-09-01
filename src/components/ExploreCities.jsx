@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Clock, Star, Loader2 } from "lucide-react";
 import { endpoints } from "../apis/endpoints";
+import { getImagefromArray, imageURL } from "../utils/helper";
 
 const SlickArrowLeft = ({ ...props }) => (
   <img src={next} alt="prevArrow" {...props} />
@@ -46,23 +47,19 @@ const ExploreCities = () => {
     const fetchCities = async () => {
       try {
         const formData = new FormData();
-       formData.append("country_id", "167");
+        formData.append("country_id", "167");
         formData.append("limit", "10");
-        formData.append("zero_page", "2");
-        
+        formData.append("offset", "0");
 
-        const response = await fetch(
-          endpoints.getCities,
-          {
-            method: "POST",
-            body: formData, // sending as form data
-          }
-        );
+        const response = await fetch(endpoints.getFamousCities, {
+          method: "POST",
+          body: formData, // sending as form data
+        });
 
         if (!response.ok) throw new Error("Failed to fetch cities");
         const data = await response.json();
         console.log("API response:", data);
-setCities((data?.records || []).slice(0, 50));
+        setCities((data?.records || []).slice(0, 50));
       } catch (err) {
         setError(err.message);
       } finally {
@@ -71,8 +68,6 @@ setCities((data?.records || []).slice(0, 50));
     };
     fetchCities();
   }, []);
-
- 
 
   return (
     <section
@@ -104,7 +99,9 @@ setCities((data?.records || []).slice(0, 50));
                 <div key={city.id}>
                   <div className="overflow-hidden rounded-2xl bg-white shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 mb-5 mr-5">
                     <img
-                      src={`https://via.placeholder.com/600x400?text=${city.name}`}
+                      src={
+                        getImagefromArray(city.images)
+                      }
                       alt={city.name}
                       width={600}
                       height={400}
