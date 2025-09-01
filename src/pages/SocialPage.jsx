@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import {
   HiHome,
   HiMail,
@@ -18,7 +18,7 @@ import Post from "../components/Post";
 import PostBox from "../components/PostBox";
 
 export default function Social() {
-  const [posts, setPosts] = useState(initialPosts);
+  const [posts, setPosts] = useState([]);
   const [newPost, setNewPost] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
   const [replyingTo, setReplyingTo] = useState(null);
@@ -43,43 +43,43 @@ export default function Social() {
     }
   };
 
- const handlePost = (postData) => {
-   const { content, image, poll } = postData;
+  const handlePost = (postData) => {
+    const { content, image, poll } = postData;
 
-   if (
-     content.trim() ||
-     image ||
-     (poll && poll.options.some((opt) => opt.trim() !== ""))
-   ) {
-     const newPost = {
-       id: Date.now(),
-       name: "Explorer Bees",
-       handle: "explorer_bees",
-       avatar: logo,
-       content: content,
-       time: "Just now",
-       likes: "0",
-       shares: "0",
-       replies: "0",
-       image: image,
-       poll: poll
-         ? {
-             options: poll.options,
-             votes: poll.options.map(() => 0), // Initialize all votes to 0
-             totalVotes: 0,
-           }
-         : null,
-       repliesList: [],
-     };
+    if (
+      content.trim() ||
+      image ||
+      (poll && poll.options.some((opt) => opt.trim() !== ""))
+    ) {
+      const newPost = {
+        id: Date.now(),
+        name: "Explorer Bees",
+        handle: "explorer_bees",
+        avatar: logo,
+        content: content,
+        time: "Just now",
+        likes: "0",
+        shares: "0",
+        replies: "0",
+        image: image,
+        poll: poll
+          ? {
+              options: poll.options,
+              votes: poll.options.map(() => 0), // Initialize all votes to 0
+              totalVotes: 0,
+            }
+          : null,
+        repliesList: [],
+      };
 
-     setPosts([newPost, ...posts]);
-     setNewPost("");
-     setSelectedImage(null);
-     if (fileInputRef.current) {
-       fileInputRef.current.value = "";
-     }
-   }
- };
+      setPosts([newPost, ...posts]);
+      setNewPost("");
+      setSelectedImage(null);
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
+    }
+  };
 
   const handleReply = (postId) => {
     if (replyContent.trim()) {
@@ -157,6 +157,50 @@ export default function Social() {
     </div>
   );
 
+  //Api call timeline
+  const fetchTimeline = async () => {
+    const formdata = new FormData();
+    formdata.append("user_email", "alina@gmail.com");
+    formdata.append("limit", "10");
+    formdata.append("postOffset", "0");
+    formdata.append("hiveOffset", "0");
+    formdata.append("sponsoredPostOffset", "0");
+    formdata.append("suggestedPostOffset", "0");
+
+    const requestOptions = {
+      method: "POST",
+      body: formdata,
+      redirect: "follow",
+    };
+
+    fetch(
+      "https://app.explorerbees.com/apiv/api_v10/getTimeline.php",
+      requestOptions
+    )
+      .then((response) => response.text())
+      .then((res) => {
+        const result = JSON.parse(res);
+        if(result.error ){
+          console.error("Error Message: ", result.error_msg);
+        }else{
+          const records = result.records;
+          const data  = records.data;
+          
+          console.log("PostCount", data.length);
+
+          setPosts(data);
+
+
+        }
+      })
+      .catch((error) => console.error(error));
+  };
+
+  useEffect(() => {
+    fetchTimeline();
+  },[])
+
+
   return (
     <div className="bg-white text-black min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -203,7 +247,7 @@ export default function Social() {
             <PostBox
               value={newPost}
               onChange={setNewPost}
-              onPost={handlePost} 
+              onPost={handlePost}
               selectedImage={selectedImage}
               onImageUpload={handleImageUpload}
               removeImage={removeImage}
@@ -214,10 +258,7 @@ export default function Social() {
             <div className="pb-16 md:pb-0">
               {posts.map((post) => (
                 <div key={post.id}>
-                  <Post
-                    {...post}
-                    onReply={() => setReplyingTo(post.id)}
-                  />
+                  <Post {...post} onReply={() => setReplyingTo(post.id)} />
 
                   {replyingTo === post.id && (
                     <div className="pl-16 pr-4 pb-4 bg-gray-50">
@@ -257,7 +298,7 @@ export default function Social() {
                     </div>
                   )}
 
-                  {post.repliesList.length > 0 && (
+                  {/* {post.repliesList.length > 0 && (
                     <div className="pl-16 pr-4 bg-gray-50">
                       {post.repliesList.map((reply) => (
                         <div
@@ -292,7 +333,7 @@ export default function Social() {
                         </div>
                       ))}
                     </div>
-                  )}
+                  )} */}
                 </div>
               ))}
             </div>

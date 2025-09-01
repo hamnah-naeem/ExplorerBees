@@ -2,7 +2,7 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './pages/Home';
-import Social from './pages/Social';
+import Social from './pages/SocialPage';
 import Nearby from './pages/Nearby';
 import Media from './pages/Media';
 import Podcast from './pages/Podcast';
