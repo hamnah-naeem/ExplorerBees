@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { endpoints } from "../apis/endpoints";
 
-// API endpoint
-const API_URL = "https://app.explorerbees.com/apiv/api_v10/getThingsToDo.php";
 
 const ThingsToDo = () => {
   const [activities, setActivities] = useState([]);
@@ -23,7 +22,7 @@ const ThingsToDo = () => {
         formData.append("lng", "73.0836");
         formData.append("id", "0");
 
-        const res = await fetch(API_URL, {
+        const res = await fetch(endpoints.getThingsToDo, {
           method: "POST",
           headers: {
             "Content-Type": "application/x-www-form-urlencoded",

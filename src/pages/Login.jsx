@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import LoginForm from '../components/Login/LoginForm';
 import SocialAuthButtons from '../components/Login/SocialAuthButtons';
+import { endpoints } from '../apis/endpoints';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -41,7 +42,7 @@ const Login = () => {
       formData.append('password_type', 'manual'); // Add the required password_type parameter
 
       // Make API call
-      const response = await fetch('https://app.explorerbees.com/apiv/api_v10/login.php', {
+      const response = await fetch(endpoints.login, {
         method: 'POST',
         body: formData,
       });

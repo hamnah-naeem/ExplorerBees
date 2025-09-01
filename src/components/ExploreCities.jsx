@@ -5,6 +5,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Clock, Star, Loader2 } from "lucide-react";
+import { endpoints } from "../apis/endpoints";
 
 const SlickArrowLeft = ({ ...props }) => (
   <img src={next} alt="prevArrow" {...props} />
@@ -51,7 +52,7 @@ const ExploreCities = () => {
         
 
         const response = await fetch(
-          "https://app.explorerbees.com/apiv/api_v10/getCities.php",
+          endpoints.getCities,
           {
             method: "POST",
             body: formData, // sending as form data

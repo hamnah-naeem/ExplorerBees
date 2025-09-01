@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { Clock, Star, Loader2 } from "lucide-react";
 import next from "../assets/images/home/next.png";
 import back from "../assets/images/home/back.png";
+import { endpoints } from "../apis/endpoints";
 
 const SlickArrowLeft = ({ ...props }) => (
   <img src={back} alt="prevArrow" {...props} />
@@ -40,7 +41,7 @@ const ExploreHotels = () => {
         formData.append("id", "");
 
         const res = await fetch(
-          "https://app.explorerbees.com/apiv/api_v10/getHotels.php",
+          endpoints.getHotels,
           {
             method: "POST",
             body: formData,

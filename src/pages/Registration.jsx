@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import RegistrationForm from '../components/Registration/RegistrationForm';
 import SocialAuthButtons from '../components/Registration/SocialAuthButtons';
+import { endpoints } from '../apis/endpoints';
 
 const Registration = () => {
   const navigate = useNavigate();
@@ -115,7 +116,7 @@ const Registration = () => {
   const fetchCountries = async () => {
     setLoading(prev => ({ ...prev, countries: true }));
     try {
-      const response = await fetch("https://app.explorerbees.com/apiv/api_v10/showCountries.php");
+      const response = await fetch(endpoints.showCountries);
       const result = await response.json();
 
       if (result.error === false && result.records) {
@@ -142,7 +143,7 @@ const Registration = () => {
       const formData = new FormData();
       formData.append("country_id", countryId);
 
-      const response = await fetch("https://app.explorerbees.com/apiv/api_v10/showStates.php", {
+      const response = await fetch(endpoints.showStates, {
         method: "POST",
         body: formData,
       });
@@ -172,7 +173,7 @@ const Registration = () => {
       const formData = new FormData();
       formData.append("state_id", stateId);
 
-      const response = await fetch("https://app.explorerbees.com/apiv/api_v10/showCities.php", {
+      const response = await fetch(endpoints.showCities, {
         method: "POST",
         body: formData,
       });
@@ -203,8 +204,7 @@ const Registration = () => {
       const formData = new FormData();
       formData.append('username', username);
 
-      const response = await fetch(
-        'https://app.explorerbees.com/apiv/api_v10/checkUsername.php',
+      const response = await fetch(endpoints.checkUsername,
         {
           method: 'POST',
           body: formData
@@ -398,7 +398,7 @@ const Registration = () => {
 
     try {
       const response = await fetch(
-        "https://app.explorerbees.com/apiv/api_v10/register.php",
+       endpoints.register,
         {
           method: "POST",
           body: formdata,

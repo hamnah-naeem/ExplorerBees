@@ -16,6 +16,7 @@ import {
 } from "../dummy-data/social";
 import Post from "../components/Post";
 import PostBox from "../components/PostBox";
+import { endpoints } from "../apis/endpoints";
 
 export default function Social() {
   const [posts, setPosts] = useState([]);
@@ -174,7 +175,7 @@ export default function Social() {
     };
 
     fetch(
-      "https://app.explorerbees.com/apiv/api_v10/getTimeline.php",
+      endpoints.getTimeline,
       requestOptions
     )
       .then((response) => response.text())
