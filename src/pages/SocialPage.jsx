@@ -18,6 +18,10 @@ import Post from "../components/Post";
 import PostBox from "../components/PostBox";
 
 export default function Social() {
+  const [trending, setTrending] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [users, setUsers] = useState([]);
+  const [loadingUsers, setLoadingUsers] = useState(true);
   const [posts, setPosts] = useState([]);
   const [newPost, setNewPost] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
@@ -138,26 +142,88 @@ export default function Social() {
     </div>
   );
 
-  const FollowSuggestion = ({ name, handle, avatar }) => (
-    <div className="flex items-center justify-between py-2 hover:bg-gray-100 px-2 rounded-lg cursor-pointer">
-      <div className="flex items-center">
-        <img
-          className="rounded-full w-10 h-10 mr-2"
-          src={avatar}
-          alt="Avatar"
-        />
+  const FollowSuggestion = ({ name, username, email }) => {
+    return (
+      <div className="flex items-center justify-between py-2 hover:bg-gray-100 px-2 rounded-lg cursor-pointer">
         <div>
           <div className="font-medium text-sm text-black">{name}</div>
-          <div className="text-gray-500 text-sm">@{handle}</div>
+          <div className="text-gray-500 text-sm">@{username || "user"}</div>
+          <div className="text-gray-500 text-xs">{email}</div>
         </div>
+        <button className="bg-yellow-600 text-white font-bold px-3 py-1 rounded-full text-xs hover:bg-yellow-700">
+          Follow
+        </button>
       </div>
-      <button className="bg-yellow-600 text-white font-bold px-3 py-1 rounded-full text-xs hover:bg-yellow-700">
-        Follow
-      </button>
-    </div>
-  );
+    );
+  };
 
   //Api call timeline
+  const fetchTrending = async () => {
+    setLoading(true);
+    const formdata = new FormData();
+    formdata.append("type", "0");
+    formdata.append("limit", "10");
+    formdata.append("offset", "0");
+
+    try {
+      const res = await fetch(
+        "https://app.explorerbees.com/apiv/api_v10/getTrending.php",
+        { method: "POST", body: formdata }
+      );
+      const text = await res.text();
+      const data = JSON.parse(text);
+
+      if (!data.error && data.records) {
+        setTrending(data.records);
+      } else {
+        console.error(data.error_msg);
+      }
+    } catch (err) {
+      console.error("API Error:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+  useEffect(() => {
+    fetchTrending();
+  }, []);
+
+  const fetchSuggestedUsers = async () => {
+    setLoadingUsers(true);
+    const formdata = new FormData();
+    formdata.append("email", "minhas@gmail.com");
+    formdata.append("state_id", "1");
+    formdata.append("limit", "10");
+    formdata.append("offset", "0");
+
+    try {
+      const response = await fetch(
+        "https://app.explorerbees.com/apiv/api_v10/getSuggestedUsers.php",
+        {
+          method: "POST",
+          body: formdata,
+        }
+      );
+
+      const result = await response.json();
+      console.log("Suggested Users Response:", result);
+
+      if (!result.error && result.records) {
+        setUsers(result.records);
+      } else {
+        console.error("Error Message:", result.error_msg);
+      }
+    } catch (error) {
+      console.error("API Error:", error);
+    } finally {
+      setLoadingUsers(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchSuggestedUsers();
+  }, []);
+
   const fetchTimeline = async () => {
     const formdata = new FormData();
     formdata.append("user_email", "alina@gmail.com");
@@ -180,17 +246,15 @@ export default function Social() {
       .then((response) => response.text())
       .then((res) => {
         const result = JSON.parse(res);
-        if(result.error ){
+        if (result.error) {
           console.error("Error Message: ", result.error_msg);
-        }else{
+        } else {
           const records = result.records;
-          const data  = records.data;
-          
+          const data = records.data;
+
           console.log("PostCount", data.length);
 
           setPosts(data);
-
-
         }
       })
       .catch((error) => console.error(error));
@@ -198,8 +262,7 @@ export default function Social() {
 
   useEffect(() => {
     fetchTimeline();
-  },[])
-
+  }, []);
 
   return (
     <div className="bg-white text-black min-h-screen">
@@ -340,39 +403,76 @@ export default function Social() {
           </div>
 
           {/* Right Sidebar */}
-          <div className="lg:col-span-3 hidden lg:block sticky top-0 h-screen overflow-y-auto py-4 pl-4 pr-2">
-            <div className="bg-gray-100 rounded-full flex items-center px-4 py-2 mb-4">
-              <FaSearch className="text-gray-500 mr-2" />
-              <input
-                type="text"
-                placeholder="Search"
-                className="bg-transparent border-none outline-none text-black w-full"
-              />
-            </div>
-
+          <div className="lg:col-span-3 hidden lg:flex flex-col sticky top-0 h-screen overflow-y-auto space-y-4 p-4">
+            {/* Trending Now */}
             <div className="bg-gray-100 rounded-2xl p-4 mb-4">
               <h2 className="text-lg font-bold mb-3 text-black">
                 Trending Now
               </h2>
-              {trendingItems.map((item, index) => (
-                <TrendingItem key={index} {...item} />
-              ))}
+              {loading ? (
+                <p>Loading...</p>
+              ) : (
+                trending.map((item) => (
+                  <div
+                    key={item.id}
+                    className="py-2 hover:bg-gray-100 px-2 rounded-lg cursor-pointer"
+                  >
+                    <div className="text-xs text-gray-500">
+                      @{item.username}
+                    </div>
+                    <div className="font-medium text-sm text-black flex flex-wrap">
+                      {item.description.split("#").map((tag, index) =>
+                        tag ? (
+                          <span
+                            key={index}
+                            className="mr-2 mb-1 text-black-600"
+                          >
+                            #{tag}
+                          </span>
+                        ) : null
+                      )}
+                    </div>
+                    <div className="text-xs text-gray-500">{item.time}</div>
+                  </div>
+                ))
+              )}
               <button className="text-yellow-600 hover:text-yellow-700 mt-2 text-sm">
                 Show more
               </button>
             </div>
 
+            {/* Who to follow */}
             <div className="bg-gray-100 rounded-2xl p-4">
               <h2 className="text-lg font-bold mb-3 text-black">
                 Who to follow
               </h2>
-              {followSuggestions.map((suggestion, index) => (
-                <FollowSuggestion
-                  key={index}
-                  {...suggestion}
-                  avatar={twitterdp}
-                />
-              ))}
+              {loadingUsers ? (
+                <p>Loading...</p>
+              ) : (
+                users.map((user) => (
+                  <div
+                    key={user.id}
+                    className="flex items-start hover:bg-gray-200 px-2 py-3 rounded-lg cursor-pointer"
+                  >
+                    <img
+                      className="rounded-full w-10 h-10 mr-3 flex-shrink-0"
+                      src={user.image || twitterdp}
+                      alt={user.name}
+                    />
+                    <div className="flex-1 min-w-0">
+                      <div className="font-medium text-sm text-black truncate">
+                        {user.name}
+                      </div>
+                      <div className="text-gray-500 text-sm truncate">
+                        @{user.email || "email"}
+                      </div>
+                      <button className="mt-2 bg-yellow-600 text-white font-bold px-3 py-1 rounded-full text-xs hover:bg-yellow-700">
+                        Follow
+                      </button>
+                    </div>
+                  </div>
+                ))
+              )}
               <button className="text-yellow-600 hover:text-yellow-700 mt-2 text-sm">
                 Show more
               </button>
