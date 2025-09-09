@@ -12,5 +12,6 @@ export const endpoints = {
   getThingsToDo: `${baseURL}getThingsToDo.php`,
   checkUsername: `${baseURL}checkUsername.php`,
   getTimeline: `${baseURL}getTimeline.php`,
-  getFamousCities: `${baseURL}getFamousCities.php`
+  getFamousCities: `${baseURL}getFamousCities.php`,
+  getTrending: `${baseURL}getTrending.php`
 };

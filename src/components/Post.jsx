@@ -6,7 +6,7 @@ import {
   FaRegBookmark,
   FaRegShareSquare,
 } from "react-icons/fa";
-import { imageURL } from "../utils/helper";
+// import {  } from "../utils/helper";
 
 export default function Post({
   name,

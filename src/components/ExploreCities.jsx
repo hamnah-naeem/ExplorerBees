@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Clock, Star, Loader2 } from "lucide-react";
 import { endpoints } from "../apis/endpoints";
-import { getImagefromArray, imageURL } from "../utils/helper";
+import { getImagefromArray } from "../utils/helper";
 
 const SlickArrowLeft = ({ ...props }) => (
   <img src={next} alt="prevArrow" {...props} />
