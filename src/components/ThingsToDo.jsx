@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { endpoints } from "../apis/endpoints";
-
+import { getImagefromArray } from "../utils/helper";
 
 const ThingsToDo = () => {
   const [activities, setActivities] = useState([]);
@@ -11,7 +11,7 @@ const ThingsToDo = () => {
     const fetchActivities = async () => {
       try {
         const formData = new URLSearchParams();
-        formData.append("city_id", "85437"); // Example city_id
+        formData.append("city_id", "85437"); // Example: City Id for Islamabad
         formData.append("state_id", "3169");
         formData.append("limit", "10");
         formData.append("offset", "0");
@@ -71,7 +71,7 @@ const ThingsToDo = () => {
             <img
               src={
                 activity.images?.length > 0
-                  ? `https://app.explorerbees.com/uploads/${activity.images[0].image_name}`
+                  ? getImagefromArray(activity.images)
                   : "https://via.placeholder.com/600x400?text=No+Image"
               }
               alt={activity.name}
