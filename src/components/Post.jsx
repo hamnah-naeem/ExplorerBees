@@ -6,7 +6,8 @@ import {
   FaRegBookmark,
   FaRegShareSquare,
 } from "react-icons/fa";
-// import {  } from "../utils/helper";
+
+import { getUserImageURL} from "../utils/helper";
 
 export default function Post({
   name,
@@ -27,10 +28,10 @@ export default function Post({
         <div className="mr-3">
           <img
             className="rounded-full w-12 h-12"
-            src={user_image ? imageURL + user_image : "placeholder_user.png"}
+            src={user_image ? getUserImageURL(user_image) : "placeholder_user.png"}
             alt="Avatar"
             onError={(e) => {
-              e.target.src = imageURL + "placeholder_user.png";
+              e.target.src = getUserImageURL(null);
             }}
           />
         </div>
